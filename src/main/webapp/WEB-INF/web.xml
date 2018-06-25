@@ -1,0 +1,112 @@
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <display-name>Tree Hole</display-name>
+
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+    <!-- 以下配置的加载顺序：ServletContext >> context-param >> listener >> filter >>
+       servlet >> spring -->
+    <!-- ps:创建:监听器 >> 过滤器 >>Servlet -->
+
+    <!--********************全局范围内环境参数配置*********************************************** -->
+
+    <!-- 全局范围内环境参数初始化 -->
+    <!-- 初始化spring容器 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext-*.xml</param-value>
+    </context-param>
+
+    <!--************************监听器配置****************************************************** -->
+    <!--在监听中会有contextInitialized(ServletContextEvent args)初始化方法,
+    在这个方法中获得ServletContext = ServletContextEvent.getServletContext();-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 防止spring内存溢出的监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <!-- 配置logback -->
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:logback.xml</param-value>
+    </context-param>
+
+
+    <!--************************过滤器配置****************************************************** -->
+    <!-- 解决post乱码 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--***********************servlet配置***************************************************** -->
+    <!-- spring-mvc的前端控制器 -->
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring.xml</param-value>
+        </init-param>
+        <!-- 当值为正数或零时:Servlet容器先加载数值小的servlet,再依次加载其他数值大的servlet -->
+        <load-on-startup>1</load-on-startup>
+        <!-- 文件上传配置 -->
+        <!--<multipart-config>
+            &lt;!&ndash; 文件路径 &ndash;&gt;
+            <location>待定</location>
+            &lt;!&ndash; 文件的最大大小，单位为字节 &ndash;&gt;
+            <max-file-size>5242880</max-file-size>
+            &lt;!&ndash; 请求的最大大小，单位为字节 &ndash;&gt;
+            <max-request-size>10485760</max-request-size>
+            &lt;!&ndash;文件大小阈值，当大于这个阈值时将写入到磁盘，否则在内存中。默认值为0 &ndash;&gt;
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+    <!--******************会话超时配置(单位为分钟)********************************************** -->
+    <!-- 如果某个会话在一定的时间未被访问,则服务器可以扔掉以节约资源 -->
+    <!--设置session无操作5分钟后销毁-->
+     <!--<session-config>
+         <session-timeout>5</session-timeout>
+     </session-config>-->
+
+
+    <!--******************************************************错误页面配置****************************************************** -->
+
+    <!-- 将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径 -->
+    <!--<error-page>
+        &lt;!&ndash; HTTP Error code, e.g.404 500 &ndash;&gt;
+        <error-code>404</error-code>
+        &lt;!&ndash; 用来设置发生错误或者异常时要显示的页面 &ndash;&gt;
+        <location>/error.html</location>
+    </error-page>
+    <error-page>
+        &lt;!&ndash; 设置可能会发生异常的java异常类型,例如:java.lang.Exception &ndash;&gt;
+        <exception-type>java.lang.Exception</exception-type>
+        &lt;!&ndash; 用来设置发生错误或者异常时要显示的页面 &ndash;&gt;
+        <location>/ExceptionError.html</location>
+    </error-page>-->
+
+</web-app>
