@@ -3,15 +3,15 @@ package treehole.entity;
 import java.util.Date;
 
 public class Bulletin {
-    private String bulletinId;
+    private int bulletinId;
     private String text;
     private Date createDate;
 
-    public String getBulletinId() {
+    public int getBulletinId() {
         return bulletinId;
     }
 
-    public void setBulletinId(String bulletinId) {
+    public void setBulletinId(int bulletinId) {
         this.bulletinId = bulletinId;
     }
 

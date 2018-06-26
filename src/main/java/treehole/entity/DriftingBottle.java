@@ -3,32 +3,32 @@ package treehole.entity;
 import java.util.Date;
 
 public class DriftingBottle {
-    private String bottleId;
-    private String wishId;
-    private String userId;
+    private int bottleId;
+    private int wishId;
+    private int userId;
     private Date throwDate;
 
-    public String getBottleId() {
+    public int getBottleId() {
         return bottleId;
     }
 
-    public void setBottleId(String bottleId) {
+    public void setBottleId(int bottleId) {
         this.bottleId = bottleId;
     }
 
-    public String getWishId() {
+    public int getWishId() {
         return wishId;
     }
 
-    public void setWishId(String wishId) {
+    public void setWishId(int wishId) {
         this.wishId = wishId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

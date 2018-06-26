@@ -3,16 +3,16 @@ package treehole.entity;
 import java.util.Date;
 
 public class Follow {
-    private String userId;
+    private int userId;
     private String followUserId;
     private boolean isSpecialFollow;
     private Date followDate;
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

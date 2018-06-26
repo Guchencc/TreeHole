@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import treehole.entity.User;
 import treehole.exception.UserNotFoundException;
@@ -65,6 +66,10 @@ public class HomeController {
     public @ResponseBody ResponseEntity<String> showUserProfile(@PathVariable int id,UriComponentsBuilder ucb) {
         HttpHeaders headers=new HttpHeaders();
         URI locationUri=ucb.path("/user/555")
+                .build()
+                .toUri();
+        headers.setLocation(locationUri);
+        return new ResponseEntity<>("成功了",headers,HttpStatus.CREATED);
     }
 
     @ExceptionHandler(UserNotFoundException.class)

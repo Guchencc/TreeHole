@@ -7,6 +7,7 @@ public class User {
     private int userId;
     private String username;
     private String password;
+    private String nickname;
     private int gender;
     private Date birthday;
     private String email;
@@ -39,6 +40,14 @@ public class User {
 
     public int getGender() {
         return gender;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setGender(int gender) {
@@ -75,5 +84,20 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                ", createDate=" + createDate +
+                ", profilePicture='" + profilePicture + '\'' +
+                '}';
     }
 }

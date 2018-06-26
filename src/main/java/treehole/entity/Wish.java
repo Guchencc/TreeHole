@@ -3,29 +3,29 @@ package treehole.entity;
 import java.util.Date;
 
 public class Wish {
-    private String wishId;
-    private String userId;
+    private int wishId;
+    private int userId;
     private String wish;
     private String videoPath;
     private String voicePath;
     private String picturePath;
     private Date createDate;
     private boolean isPublic;
-    private boolean isThrowed;
+    private boolean isThrown;
 
-    public String getWishId() {
+    public int getWishId() {
         return wishId;
     }
 
-    public void setWishId(String wishId) {
+    public void setWishId(int wishId) {
         this.wishId = wishId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -77,11 +77,26 @@ public class Wish {
         isPublic = aPublic;
     }
 
-    public boolean isThrowed() {
-        return isThrowed;
+    public boolean isThrown() {
+        return isThrown;
     }
 
-    public void setThrowed(boolean throwed) {
-        isThrowed = throwed;
+    public void setThrown(boolean thrown) {
+        isThrown = thrown;
+    }
+
+    @Override
+    public String toString() {
+        return "Wish{" +
+                "wishId=" + wishId +
+                ", userId=" + userId +
+                ", wish='" + wish + '\'' +
+                ", videoPath='" + videoPath + '\'' +
+                ", voicePath='" + voicePath + '\'' +
+                ", picturePath='" + picturePath + '\'' +
+                ", createDate=" + createDate +
+                ", isPublic=" + isPublic +
+                ", isThrown=" + isThrown +
+                '}';
     }
 }

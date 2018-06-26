@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Secret {
 
-    private String secretId;
-    private String userId;
+    private int secretId;
+    private int userId;
     private String content;
     private String tags;
     private boolean isAnonymous;
@@ -13,19 +13,19 @@ public class Secret {
     private int upVote;
     private int downVote;
 
-    public String getSecretId() {
+    public int getSecretId() {
         return secretId;
     }
 
-    public void setSecretId(String secretId) {
+    public void setSecretId(int secretId) {
         this.secretId = secretId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -75,5 +75,19 @@ public class Secret {
 
     public void setDownVote(int downVote) {
         this.downVote = downVote;
+    }
+
+    @Override
+    public String toString() {
+        return "Secret{" +
+                "secretId=" + secretId +
+                ", userId=" + userId +
+                ", content='" + content + '\'' +
+                ", tags='" + tags + '\'' +
+                ", isAnonymous=" + isAnonymous +
+                ", createDate=" + createDate +
+                ", upVote=" + upVote +
+                ", downVote=" + downVote +
+                '}';
     }
 }

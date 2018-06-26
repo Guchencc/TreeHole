@@ -1,17 +1,17 @@
 package treehole.entity;
 
 public class BottleProfile {
-    private String userId;
+    private int userId;
     private String profilePicture;
     private String nickname;
     private int gender;
     private String signature;
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

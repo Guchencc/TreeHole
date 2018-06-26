@@ -3,24 +3,24 @@ package treehole.entity;
 import java.util.Date;
 
 public class BottleMessage {
-    private String bottleId;
-    private String userId;
+    private int bottleId;
+    private int userId;
     private String message;
     private Date writeDate;
 
-    public String getBottleId() {
+    public int getBottleId() {
         return bottleId;
     }
 
-    public void setBottleId(String bottleId) {
+    public void setBottleId(int bottleId) {
         this.bottleId = bottleId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
