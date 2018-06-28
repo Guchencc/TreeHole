@@ -20,9 +20,16 @@ public interface FollowRepository {
     @Select("SELECT * FROM follow WHERE userId=#{userId} AND isSpecialFollow=true")
     List<Follow> findSpecialFollow(int userId);
 
-    @Delete("DELETE FROM follow WHERE userId=#{userId} AND followId=#{followId}")
+    @Delete("DELETE FROM follow WHERE userId=#{0} AND followId=#{1}")
     void delete(int userId,int followId);
 
-    @Update("UPDATE follow SET userId=#{userId},followId=#{followId},isSpecialFollow=#{isSpecialFollow},followDate=#{followDate} WHERE userId=#{userId},followId=#{followId}")
+    @Update("UPDATE follow SET userId=#{userId},followId=#{followId},isSpecialFollow=#{isSpecialFollow},followDate=#{followDate} WHERE userId=#{userId} AND followId=#{followId}")
     void update(Follow follow);
+
+    @Select("SELECT count(*) FROM follow")
+    int getPageCount();
+
+
+    @Select("SELECT * FROM follow LIMIT #{0},#{1}")
+    List<Follow> findPage(int startRow,int pageSize);
 }

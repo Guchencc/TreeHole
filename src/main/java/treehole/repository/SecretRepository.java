@@ -24,4 +24,10 @@ public interface SecretRepository {
 
     @Update("UPDATE secret SET content=#{content},tags=#{tags},isAnonymous=#{isAnonymous},upVote=#{upVote},downVote=#{downVote} WHERE secretId=#{secretId}")
     void update(Secret secret);
+
+    @Select("SELECT count(secretId) FROM secret")
+    int getPageCount();
+
+    @Select("SELECT * FROM secret LIMIT #{0},#{1}")
+    List<Secret> findPage(int startRow,int pageSize);
 }

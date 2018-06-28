@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="base" template="/WEB-INF/layout/adminPage.jsp">
+        <put-attribute name="left"  value="/WEB-INF/views/admin/sidebar.jsp" />
+    </definition>
+
+    <definition name="userManage" extends="base">
+        <put-attribute name="right" value="/WEB-INF/views/admin/userManage.jsp" />
+    </definition>
+
+    <definition name="secretManage" extends="base">
+        <put-attribute name="right" value="/WEB-INF/views/admin/secretManage.jsp"/>
+    </definition>
+
+    <definition name="commentManage" extends="base">
+        <put-attribute name="right" value="/WEB-INF/views/admin/commentManage.jsp"/>
+    </definition>
+
+    <definition name="followManage" extends="base">
+        <put-attribute name="right" value="/WEB-INF/views/admin/followManage.jsp"/>
+    </definition>
+
+    <definition name="wishManage" extends="base">
+        <put-attribute name="right" value="/WEB-INF/views/admin/wishManage.jsp"/>
+    </definition>
+
+
+
+</tiles-definitions>

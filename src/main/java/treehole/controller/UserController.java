@@ -18,12 +18,7 @@ import java.util.List;
 
 @Controller
 /*@RestController*/
-public class HomeController {
-
-    @RequestMapping(value = "/home",method = RequestMethod.GET)
-    public String showHomePage() {
-        return "test";
-    }
+public class UserController {
 
     @RequestMapping(value = "/users",produces = "application/json",method = RequestMethod.GET)
     public List<User> showUsers() {

@@ -31,7 +31,6 @@ public class Test {
         wish.setThrown(true);
         repository.add(wish);*/
         Wish wish=repository.findByWishId(1);
-        wish.setPicturePath("/pictures");
         repository.update(wish);
         System.out.println(repository.findByWishId(wish.getWishId()));
     }

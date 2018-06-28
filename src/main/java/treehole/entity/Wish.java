@@ -6,11 +6,11 @@ public class Wish {
     private int wishId;
     private int userId;
     private String wish;
-    private String videoPath;
-    private String voicePath;
-    private String picturePath;
+    private boolean hasVideo;
+    private boolean hasPicture;
+    private boolean hasVoice;
     private Date createDate;
-    private boolean isPublic;
+    private boolean isPrivacy;
     private boolean isThrown;
 
     public int getWishId() {
@@ -37,28 +37,28 @@ public class Wish {
         this.wish = wish;
     }
 
-    public String getVideoPath() {
-        return videoPath;
+    public boolean isHasVideo() {
+        return hasVideo;
     }
 
-    public void setVideoPath(String videoPath) {
-        this.videoPath = videoPath;
+    public void setHasVideo(boolean hasVideo) {
+        this.hasVideo = hasVideo;
     }
 
-    public String getVoicePath() {
-        return voicePath;
+    public boolean isHasPicture() {
+        return hasPicture;
     }
 
-    public void setVoicePath(String voicePath) {
-        this.voicePath = voicePath;
+    public void setHasPicture(boolean hasPicture) {
+        this.hasPicture = hasPicture;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public boolean isHasVoice() {
+        return hasVoice;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setHasVoice(boolean hasVoice) {
+        this.hasVoice = hasVoice;
     }
 
     public Date getCreateDate() {
@@ -69,12 +69,12 @@ public class Wish {
         this.createDate = createDate;
     }
 
-    public boolean isPublic() {
-        return isPublic;
+    public boolean isPrivacy() {
+        return isPrivacy;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setPrivacy(boolean privacy) {
+        isPrivacy = privacy;
     }
 
     public boolean isThrown() {
@@ -91,11 +91,11 @@ public class Wish {
                 "wishId=" + wishId +
                 ", userId=" + userId +
                 ", wish='" + wish + '\'' +
-                ", videoPath='" + videoPath + '\'' +
-                ", voicePath='" + voicePath + '\'' +
-                ", picturePath='" + picturePath + '\'' +
+                ", hasVideo=" + hasVideo +
+                ", hasPicture=" + hasPicture +
+                ", hasVoice=" + hasVoice +
                 ", createDate=" + createDate +
-                ", isPublic=" + isPublic +
+                ", isPrivacy=" + isPrivacy +
                 ", isThrown=" + isThrown +
                 '}';
     }

@@ -3,11 +3,20 @@ package treehole.entity;
 import java.util.Date;
 
 public class Comment {
+    private int commentId;
     private int secretId;
     private int userId;
     private String comment;
     private Date commentDate;
     private boolean isAnonymous;
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
 
     public int getSecretId() {
         return secretId;

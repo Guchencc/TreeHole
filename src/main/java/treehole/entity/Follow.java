@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Follow {
     private int userId;
-    private String followUserId;
+    private String followId;
     private boolean isSpecialFollow;
     private Date followDate;
 
@@ -16,12 +16,12 @@ public class Follow {
         this.userId = userId;
     }
 
-    public String getFollowUserId() {
-        return followUserId;
+    public String getFollowId() {
+        return followId;
     }
 
-    public void setFollowUserId(String followUserId) {
-        this.followUserId = followUserId;
+    public void setFollowId(String followId) {
+        this.followId = followId;
     }
 
     public boolean isSpecialFollow() {

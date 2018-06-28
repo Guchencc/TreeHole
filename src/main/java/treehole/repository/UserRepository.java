@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    @Insert("INSERT INTO user(username,password,nickname,gender,birthday,email,createDate,profilePicture) VALUES (#{username},#{password},#{nickname},#{gender},#{birthday},#{email},#{createDate},#{profilePicture})")
+    @Insert("INSERT INTO user(username,password,nickname,gender,birthday,email,createDate) VALUES (#{username},#{password},#{nickname},#{gender},#{birthday},#{email},#{createDate})")
     void add(User user);
 
     @Select("SELECT * FROM user WHERE userId=#{userId}")
@@ -25,9 +25,24 @@ public interface UserRepository {
     @Select("SELECT * FROM user")
     List<User> findAll();
 
-    @Update("UPDATE user SET username=#{username},password=#{password},nickname=#{nickname}, gender=#{gender},birthday=#{birthday},email=#{email},profilePicture=#{profilePicture} WHERE userId=#{userId}")
+    @Update("UPDATE user SET username=#{username},password=#{password},nickname=#{nickname}, gender=#{gender},birthday=#{birthday},email=#{email} WHERE userId=#{userId}")
     void update(User user);
 
     @Delete("DELETE FROM user WHERE userId=#{userId}")
     void delete(int userId);
+
+    @Select("SELECT count(userId) FROM user")
+    int getPageCount();
+
+
+    @Select("SELECT * FROM user LIMIT #{0},#{1}")
+    List<User> findPage(int startRow,int pageSize);
+
+    @Select("SELECT * FROM user WHERE username LIKE CONCAT('%',#{content},'%')")
+    List<User> searchByUserName(String content);
+
+    @Select("SELECT * FROM user WHERE nickname LIKE CONCAT('%',#{content},'%')")
+    List<User> searchByNickName(String content);
+
+
 }
