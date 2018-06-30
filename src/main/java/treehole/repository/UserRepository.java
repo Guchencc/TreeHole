@@ -22,6 +22,9 @@ public interface UserRepository {
     @Select("SELECT * FROM user WHERE nickname=#{nickname}")
     User findByNickName(String nickname);
 
+    @Select("SELECT * FROM user WHERE email=#{email}")
+    User findByEmail(String email);
+
     @Select("SELECT * FROM user")
     List<User> findAll();
 

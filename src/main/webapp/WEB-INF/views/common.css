@@ -1,0 +1,26 @@
+h1 {
+    color:orangered;
+}
+
+.main .col1{
+    width:620px;
+    float: left;
+    margin:20px 20px 0 0;
+    position: relative;
+    border-color: #00a1cb;
+}
+
+.main .col1 .block{
+    background-color: #fff;
+    clear: both;
+    padding: 18px 20px;
+    border-color: #00a1cb;
+}
+
+.content-block{
+    width:940px;
+    margin:0 auto;
+    padding:0 10px 0 10px;
+    border: 10px black;
+
+}

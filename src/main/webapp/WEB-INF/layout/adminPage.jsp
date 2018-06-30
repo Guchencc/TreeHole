@@ -65,13 +65,13 @@
 <body>
 <input type="hidden" id="contextPath" value="${pageContext.request.contextPath}" />
 <div id="wrap">
-<div id="left" >
-    <t:insertAttribute name="left"/>
-</div>
-
-<div id="right">
-    <t:insertAttribute name="right"/>
-</div>
+    <div id="left" >
+        <t:insertAttribute name="left"/>
+    </div>
+    <!-- Tab panes -->
+    <div id="right">
+        <t:insertAttribute name="right"/>
+    </div>
 </div>
 </body>
 </html>

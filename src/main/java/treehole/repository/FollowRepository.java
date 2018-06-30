@@ -14,6 +14,9 @@ public interface FollowRepository {
     @Insert("INSERT INTO follow(userId,followId,isSpecialFollow,followDate) VALUES (#{userId},#{followId},#{isSpecialFollow},#{followDate})")
     void add(Follow follow);
 
+    @Select("SELECT * FROM follow WHERE userId=#{0} AND followId=#{1}")
+    Follow find(int userId,int followId);
+
     @Select("SELECT * FROM follow WHERE userId=#{userId}")
     List<Follow> findByUserId(int userId);
 

@@ -5,28 +5,40 @@
 
 <tiles-definitions>
 
-    <definition name="base" template="/WEB-INF/layout/adminPage.jsp">
+    <definition name="adminbase" template="/WEB-INF/layout/adminPage.jsp">
         <put-attribute name="left"  value="/WEB-INF/views/admin/sidebar.jsp" />
     </definition>
 
-    <definition name="userManage" extends="base">
+    <definition name="userbase" template="/WEB-INF/layout/home.jsp">
+        <put-attribute name="left"  value="/WEB-INF/views/admin/sidebar.jsp" />
+    </definition>
+
+    <definition name="home" extends="userbase">
+        <put-attribute name="right" value="/WEB-INF/views/user/treehole.jsp"/>
+    </definition>
+
+    <definition name="userManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/userManage.jsp" />
     </definition>
 
-    <definition name="secretManage" extends="base">
+    <definition name="secretManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/secretManage.jsp"/>
     </definition>
 
-    <definition name="commentManage" extends="base">
+    <definition name="commentManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/commentManage.jsp"/>
     </definition>
 
-    <definition name="followManage" extends="base">
+    <definition name="followManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/followManage.jsp"/>
     </definition>
 
-    <definition name="wishManage" extends="base">
+    <definition name="wishManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/wishManage.jsp"/>
+    </definition>
+
+    <definition name="userProfile" extends="userbase">
+        <put-attribute name="right" value="/WEB-INF/views/user/treehole.jsp"/>
     </definition>
 
 

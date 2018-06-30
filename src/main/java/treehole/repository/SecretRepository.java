@@ -13,6 +13,9 @@ public interface SecretRepository {
             "VALUES(#{userId},#{content},#{tags},#{isAnonymous},#{createDate},#{upVote},#{downVote})")
     void add(Secret secret);
 
+    @Select("SELECT * FROM secret")
+    List<Secret> findAllSecrets();
+
     @Select("SELECT * FROM secret WHERE secretId=#{secretId}")
     Secret findBySecretId(int secretId);
 
