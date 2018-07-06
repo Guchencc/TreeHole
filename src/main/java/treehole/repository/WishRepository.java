@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import treehole.entity.Secret;
 import treehole.entity.Wish;
+import treehole.model.WishInfo;
 
 import java.util.List;
 
@@ -20,7 +21,6 @@ public interface WishRepository {
     @Select("SELECT * FROM wish WHERE userId=#{userId}")
     List<Wish> findByUserId(int userId);
 
-
     @Delete("DELETE FROM wish WHERE wishId=#{wishId}")
     void delete(int wishId);
 
@@ -32,4 +32,6 @@ public interface WishRepository {
 
     @Select("SELECT * FROM wish LIMIT #{0},#{1}")
     List<Wish> findPage(int startRow, int pageSize);
+
+
 }

@@ -37,7 +37,6 @@ public interface UserRepository {
     @Select("SELECT count(userId) FROM user")
     int getPageCount();
 
-
     @Select("SELECT * FROM user LIMIT #{0},#{1}")
     List<User> findPage(int startRow,int pageSize);
 

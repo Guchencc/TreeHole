@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import treehole.entity.Secret;
 import treehole.entity.User;
+import treehole.model.SecretInfo;
 import treehole.repository.SecretRepository;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class AdminSecretController {
 
 
     @RequestMapping(value = "/secret/add",method = RequestMethod.POST)
-    public String addSecret(@Valid Secret secret, Errors errors){
+    public String addSecret(Secret secret, Errors errors){
         if(errors.hasErrors()){
             return "redirect:/admin/secret/1";
         }

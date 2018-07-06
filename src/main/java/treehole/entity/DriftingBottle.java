@@ -7,6 +7,10 @@ public class DriftingBottle {
     private int wishId;
     private int userId;
     private Date throwDate;
+    private String pickedUsers;
+    private int pickCount;
+    private boolean isAnonymous;
+
 
     public int getBottleId() {
         return bottleId;
@@ -38,5 +42,29 @@ public class DriftingBottle {
 
     public void setThrowDate(Date throwDate) {
         this.throwDate = throwDate;
+    }
+
+    public String getPickedUsers() {
+        return pickedUsers;
+    }
+
+    public void setPickedUsers(String pickedUsers) {
+        this.pickedUsers = pickedUsers;
+    }
+
+    public int getPickCount() {
+        return pickCount;
+    }
+
+    public void setPickCount(int pickCount) {
+        this.pickCount = pickCount;
+    }
+
+    public boolean isAnonymous() {
+        return isAnonymous;
+    }
+
+    public void setAnonymous(boolean anonymous) {
+        isAnonymous = anonymous;
     }
 }

@@ -57,4 +57,16 @@ public class Comment {
     public void setAnonymous(boolean anonymous) {
         isAnonymous = anonymous;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", secretId=" + secretId +
+                ", userId=" + userId +
+                ", comment='" + comment + '\'' +
+                ", commentDate=" + commentDate +
+                ", isAnonymous=" + isAnonymous +
+                '}';
+    }
 }

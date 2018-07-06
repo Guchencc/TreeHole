@@ -16,6 +16,9 @@ public interface BulletinRepository {
     @Select("SELECT * FROM bulletin WHERE bulletinId=#{bulletinId}")
     Bulletin findById(int bulletinId);
 
+    @Select("SELECT * FROM bulletin ORDER BY bulletinId DESC LIMIT 0,#{size}")
+    List<Bulletin> findLatest(int size);
+
     @Select("SELECT * FROM bulletin")
     List<Bulletin> findAll();
 
@@ -24,4 +27,5 @@ public interface BulletinRepository {
 
     @Update("UPDATE bulletin SET content=#{content},createDate=#{createDate}")
     void update(Bulletin bulletin);
+
 }

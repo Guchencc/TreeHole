@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import treehole.entity.Comment;
 import treehole.entity.Secret;
+import treehole.model.PageBean;
+import treehole.model.SecretInfo;
 import treehole.repository.SecretRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,8 +29,18 @@ public class SecretService implements ISecretService {
         return secretRepository.findByUserId(userId);
     }
 
+    public PageBean<SecretInfo> getSecretsInPage(int pageNum,int pageSize){
+        List<Secret> secretList=secretRepository.findAllSecrets();
+        int totalRecord=secretList.size();
+        PageBean<SecretInfo> pageBean=new PageBean<>(pageNum,pageSize,totalRecord);
+        int startIndex=pageBean.getStartIndex();
+        pageBean.setList(secretRepository.findSecretPage(startIndex,pageSize));
+        return pageBean;
+    }
+
     @Override
     public void writeSecret(Secret secret) {
+        secret.setCreateDate(new Date());
         secretRepository.add(secret);
     }
 
@@ -39,5 +52,30 @@ public class SecretService implements ISecretService {
     @Override
     public void deleteSecret(int secretId) {
         secretRepository.delete(secretId);
+    }
+
+    @Override
+    public List<SecretInfo> getSecretPage(int startRow, int pageSize) {
+        return secretRepository.findSecretPage(startRow,pageSize);
+    }
+
+    @Override
+    public void upVote(int secretId) {
+        secretRepository.upVote(secretId);
+    }
+
+    @Override
+    public void downVote(int secretId) {
+        secretRepository.downVote(secretId);
+    }
+
+    @Override
+    public PageBean<SecretInfo> getSecretPageByTag(int pageNum,int pageSize,String tag){
+        List<Secret> secretList=secretRepository.findSecretWithTag(tag);
+        int totalRecord=secretList.size();
+        PageBean<SecretInfo> pageBean=new PageBean<>(pageNum,pageSize,totalRecord);
+        int startIndex=pageBean.getStartIndex();
+        pageBean.setList(secretRepository.findSecretPageByTag(startIndex,pageSize,tag));
+        return pageBean;
     }
 }

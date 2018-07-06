@@ -25,4 +25,6 @@ public interface PickRepository {
 
     @Update("UPDATE pick SET userId=#{userId},bottleId=#{bottleId} WHERE userId=#{userId},bottleId=#{bottleId}")
     void update(Pick pick);
+
+
 }

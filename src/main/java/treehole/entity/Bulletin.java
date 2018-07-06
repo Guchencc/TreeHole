@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Bulletin {
     private int bulletinId;
-    private String text;
+    private String content;
     private Date createDate;
 
     public int getBulletinId() {
@@ -15,12 +15,12 @@ public class Bulletin {
         this.bulletinId = bulletinId;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getCreateDate() {

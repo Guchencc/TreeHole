@@ -20,5 +20,7 @@ public class Test {
         List<User> users= repository.findAll();
         PageBean<User> pageBean=new PageBean<>(1,6,users.size());
         System.out.println(pageBean);
+        PageBean bean=new PageBean(5,2,9);
+
     }
 }

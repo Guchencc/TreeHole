@@ -9,4 +9,5 @@ public interface IWishService {
     void writerWish(Wish wish);
     Wish getWish(int wishId);
     void deleteWish(int wishId);
+    void setThrown(int wishId);
 }

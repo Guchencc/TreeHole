@@ -3,6 +3,7 @@ package treehole.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import treehole.entity.Follow;
+import treehole.model.FollowInfo;
 import treehole.repository.FollowRepository;
 
 import java.util.Date;
@@ -18,13 +19,13 @@ public class FollowService implements IFollowService{
     }
 
     @Override
-    public List<Follow> getFollows(int userId) {
-        return  followRepository.findByUserId(userId);
+    public List<FollowInfo> getFollows(int userId) {
+        return  followRepository.getFollowInfo(userId);
     }
 
     @Override
-    public List<Follow> getSpecialFollows(int userId) {
-        return followRepository.findSpecialFollow(userId);
+    public List<FollowInfo> getSpecialFollows(int userId) {
+        return followRepository.getSpecialFollowInfo(userId);
     }
 
     @Override

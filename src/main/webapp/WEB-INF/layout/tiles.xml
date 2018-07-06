@@ -8,18 +8,68 @@
     <definition name="adminbase" template="/WEB-INF/layout/adminPage.jsp">
         <put-attribute name="left"  value="/WEB-INF/views/admin/sidebar.jsp" />
     </definition>
+    <definition name="lrbase" template="/WEB-INF/layout/loginbase.jsp"/>
 
-    <definition name="userbase" template="/WEB-INF/layout/home.jsp">
-        <put-attribute name="left"  value="/WEB-INF/views/admin/sidebar.jsp" />
+    <definition name="homebase" template="/WEB-INF/layout/home.jsp" />
+
+    <definition name="home" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/treehole.jsp"/>
+    </definition>
+    <definition name="tagsecret" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/tagsecret.jsp"/>
     </definition>
 
-    <definition name="home" extends="userbase">
-        <put-attribute name="right" value="/WEB-INF/views/user/treehole.jsp"/>
+    <definition name="profile" template="/WEB-INF/views/user/profile.jsp" />
+
+    <definition name="login" extends="lrbase">
+        <put-attribute name="content" value="/WEB-INF/views/user/loginForm.jsp"/>
+    </definition>
+
+    <definition name="register" extends="lrbase">
+        <put-attribute name="content" value="/WEB-INF/views/user/registerForm.jsp"/>
+    </definition>
+
+    <definition name="wishbottle" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/wishbottle.jsp"/>
+    </definition>
+
+    <definition name="writewish" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/writewish.jsp"/>
+    </definition>
+
+    <definition name="salvagebottle" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/salvagebottle.jsp"/>
+    </definition>
+
+    <definition name="pickedbottles" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/pickedbottles.jsp"/>
+    </definition>
+
+    <definition name="thrownbottles" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/thrownbottles.jsp"/>
+    </definition>
+
+    <definition name="bottledetail" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/bottledetail.jsp"/>
+    </definition>
+
+    <definition name="mywishes" extends="homebase">
+        <put-attribute name="left" value="/WEB-INF/views/user/sidebar.jsp"/>
+        <put-attribute name="right" value="/WEB-INF/views/user/mywishes.jsp"/>
     </definition>
 
     <definition name="userManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/userManage.jsp" />
     </definition>
+
 
     <definition name="secretManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/secretManage.jsp"/>
@@ -36,11 +86,5 @@
     <definition name="wishManage" extends="adminbase">
         <put-attribute name="right" value="/WEB-INF/views/admin/wishManage.jsp"/>
     </definition>
-
-    <definition name="userProfile" extends="userbase">
-        <put-attribute name="right" value="/WEB-INF/views/user/treehole.jsp"/>
-    </definition>
-
-
 
 </tiles-definitions>

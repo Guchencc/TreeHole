@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import treehole.entity.Comment;
 import treehole.entity.User;
 import treehole.repository.CommentRepository;
-import treehole.repository.UserRepository;
-
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +44,7 @@ public class AdminCommentController {
 
 
     @RequestMapping(value = "/comment/add",method = RequestMethod.POST)
-    public String addComment(@Valid Comment comment, Errors errors){
+    public String addComment(Comment comment, Errors errors){
         if(errors.hasErrors()){
             return "redirect:/admin/comment/1";
         }

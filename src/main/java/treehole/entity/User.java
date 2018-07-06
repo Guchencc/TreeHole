@@ -9,20 +9,16 @@ import java.util.Date;
 public class User {
 
     private int userId;
-    @NotNull
-    @Size(min=8,max=16)
+
     private String username;
-    @NotNull
-    @Size(min=8,max=16)
+
     private String password;
-    @NotNull
-    @Size(min=4,max=10)
+
     private String nickname;
-    @NotNull
+
     private int gender;
-    @Past
+
     private Date birthday;
-    @NotNull
     private String email;
     private Date createDate;
 

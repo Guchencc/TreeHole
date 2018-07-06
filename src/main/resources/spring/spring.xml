@@ -23,6 +23,8 @@
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
 
+
+
     <!--<bean id="cnManagerFactory" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean" p:defaultContentType="text/html"/>
 
     <bean id="cnViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Update;
 import treehole.entity.Comment;
 import treehole.entity.Follow;
 import treehole.entity.User;
+import treehole.model.CommentInfo;
 
 import java.util.List;
 
@@ -35,4 +36,8 @@ public interface CommentRepository {
 
     @Select("SELECT * FROM comment LIMIT #{0},#{1}")
     List<Comment> findPage(int startRow, int pageSize);
+
+    @Select("SELECT commentId,secretId,a.userId,b.nickname,comment,commentDate,isAnonymous FROM comment a,user b WHERE a.userId=b.userId AND a.secretId=#{secretId} ORDER BY a.commentDate DESC")
+    List<CommentInfo> getSecretCommentInfo(int secretId);
+
 }

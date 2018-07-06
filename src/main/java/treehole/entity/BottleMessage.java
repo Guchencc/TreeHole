@@ -7,6 +7,7 @@ public class BottleMessage {
     private int userId;
     private String message;
     private Date writeDate;
+    private boolean isAnonymous;
 
     public int getBottleId() {
         return bottleId;
@@ -38,5 +39,13 @@ public class BottleMessage {
 
     public void setWriteDate(Date writeDate) {
         this.writeDate = writeDate;
+    }
+
+    public boolean isAnonymous() {
+        return isAnonymous;
+    }
+
+    public void setAnonymous(boolean anonymous) {
+        isAnonymous = anonymous;
     }
 }

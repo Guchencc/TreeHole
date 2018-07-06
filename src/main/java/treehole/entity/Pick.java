@@ -5,7 +5,7 @@ import java.util.Date;
 public class Pick {
     private int userId;
     private int bottleId;
-    private Date bottleDate;
+    private Date pickDate;
 
     public int getUserId() {
         return userId;
@@ -23,11 +23,11 @@ public class Pick {
         this.bottleId = bottleId;
     }
 
-    public Date getBottleDate() {
-        return bottleDate;
+    public Date getPickDate() {
+        return pickDate;
     }
 
-    public void setBottleDate(Date bottleDate) {
-        this.bottleDate = bottleDate;
+    public void setPickDate(Date pickDate) {
+        this.pickDate = pickDate;
     }
 }

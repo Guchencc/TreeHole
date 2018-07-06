@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Update;
 import treehole.entity.Follow;
 import treehole.entity.Pick;
 import treehole.entity.User;
+import treehole.model.FollowInfo;
 
 import java.util.List;
 
@@ -35,4 +36,9 @@ public interface FollowRepository {
 
     @Select("SELECT * FROM follow LIMIT #{0},#{1}")
     List<Follow> findPage(int startRow,int pageSize);
+
+    @Select("SELECT b.userId,a.username,b.followId,c.username AS followUserName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=#{userId}")
+    List<FollowInfo> getFollowInfo(int userId);
+    @Select("SELECT b.userId,a.username,b.followId,c.username AS followUserName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=1 AND b.isSpecialFollow=TRUE")
+    List<FollowInfo> getSpecialFollowInfo(int userId);
 }
