@@ -39,6 +39,18 @@ public interface FollowRepository {
 
     @Select("SELECT b.userId,a.username,b.followId,c.username AS followUserName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=#{userId}")
     List<FollowInfo> getFollowInfo(int userId);
-    @Select("SELECT b.userId,a.username,b.followId,c.username AS followUserName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=1 AND b.isSpecialFollow=TRUE")
+    @Select("SELECT b.userId,a.username,b.followId,c.username AS followUserName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=#{userId} AND b.isSpecialFollow=TRUE")
     List<FollowInfo> getSpecialFollowInfo(int userId);
+
+    @Select("SELECT a.* FROM user a,follow b WHERE b.userId=#{userId} AND a.userId=b.followId")
+    List<User> findFollowUsers(int userId);
+
+    @Select("SELECT a.* FROM user a,follow b WHERE b.followId=#{userId} AND a.userId=b.userId")
+    List<User> findFans(int userId);
+
+    @Select("SELECT b.userId,a.nickname,b.followId,c.nickname AS followNickName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.userId=#{2} LIMIT #{0},#{1} ")
+    List<FollowInfo> findFollowPage(int startIndex, int pageSize,int userId);
+
+    @Select("SELECT b.userId,a.nickname,b.followId,c.nickname AS followNickName,b.followDate,b.isSpecialFollow FROM user a,follow b,user c WHERE b.userId=a.userId AND b.followId=c.userId AND b.followId=#{2} LIMIT #{0},#{1}")
+    List<FollowInfo> findFanPage(int startIndex, int pageSize, int userId);
 }

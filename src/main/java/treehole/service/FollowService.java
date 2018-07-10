@@ -57,4 +57,12 @@ public class FollowService implements IFollowService{
         follow.setSpecialFollow(false);
         followRepository.update(follow);
     }
+
+    public boolean checkFollow(int userId,int followId){
+        Follow follow=followRepository.find(userId,followId);
+        if (follow==null)
+            return false;
+        else
+            return true;
+    }
 }

@@ -12,7 +12,6 @@ import treehole.entity.User;
 import treehole.repository.FollowRepository;
 import treehole.repository.UserRepository;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,7 +70,7 @@ public class AdminFollowController {
 
 
     @RequestMapping(value = "/follow/add",method = RequestMethod.POST)
-    public String addFollow(@Valid Follow follow, Errors errors){
+    public String addFollow(Follow follow, Errors errors){
         if(errors.hasErrors()){
             return "redirect:/admin/follow/1";
         }

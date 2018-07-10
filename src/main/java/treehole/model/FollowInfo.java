@@ -6,12 +6,11 @@ import java.util.Date;
 
 public class FollowInfo {
     private int userId;
-    private String username;
+    private String nickname;
     private int followId;
-    private String followUserName;
-    private boolean special;
+    private String followNickName;
+    private boolean isSpecialFollow;
     private Date followDate;
-
 
 
     public int getUserId() {
@@ -22,12 +21,12 @@ public class FollowInfo {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public int getFollowId() {
@@ -38,20 +37,20 @@ public class FollowInfo {
         this.followId = followId;
     }
 
-    public String getFollowUserName() {
-        return followUserName;
+    public String getFollowNickName() {
+        return followNickName;
     }
 
-    public void setFollowUserName(String followUserName) {
-        this.followUserName = followUserName;
+    public void setFollowNickName(String followNickName) {
+        this.followNickName = followNickName;
     }
 
-    public boolean isSpecial() {
-        return special;
+    public boolean isSpecialFollow() {
+        return isSpecialFollow;
     }
 
-    public void setSpecial(boolean special) {
-        this.special = special;
+    public void setSpecialFollow(boolean specialFollow) {
+        isSpecialFollow = specialFollow;
     }
 
     public Date getFollowDate() {

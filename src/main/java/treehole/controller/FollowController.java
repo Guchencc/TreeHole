@@ -26,23 +26,15 @@ public class FollowController {
     @RequestMapping(value = "/user/follow/{id}",method = RequestMethod.GET,produces = "text/html;charset=utf-8")
     public @ResponseBody String followUser(@PathVariable("id")int followUserId, HttpSession session) {
         User user=(User)session.getAttribute("user");
-        if (user==null) {
-            return "请先登录！";
-        }else {
-            followService.addFollow(user.getUserId(),followUserId);
-        }
-        return "关注成功!";
+        followService.addFollow(user.getUserId(),followUserId);
+        return "success";
     }
 
     @RequestMapping(value = "/user/notFollow/{id}",method = RequestMethod.GET)
     public @ResponseBody String StopFollowUser(@PathVariable("id")int followUserId, HttpSession session) {
         User user=(User)session.getAttribute("user");
-        if (user==null) {
-            return "请先登录！";
-        }else {
-            followService.stopFollow(user.getUserId(),followUserId);
-        }
-        return "取消关注成功!";
+        followService.stopFollow(user.getUserId(),followUserId);
+        return "success";
     }
 
     @RequestMapping(value = "/user/specialFollow/{id}",method = RequestMethod.GET)
@@ -75,6 +67,16 @@ public class FollowController {
     @RequestMapping(value = "/user/{id}/sfollows",method = RequestMethod.GET,produces = "application/json")
     public @ResponseBody List<FollowInfo> getSpecialFollows(@PathVariable("id")int userId) {
         return followService.getSpecialFollows(userId);
+    }
 
+    @RequestMapping(value = "/checkfollow/{followId}",method = RequestMethod.GET)
+    public @ResponseBody String checkFollow(@PathVariable("followId")int followId,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        boolean isFollow=followService.checkFollow(user.getUserId(),followId);
+        if (isFollow){
+            return "true";
+        }else{
+            return "false";
+        }
     }
 }

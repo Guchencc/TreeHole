@@ -17,9 +17,9 @@
 </script>
 <!--左上-->
 <div class="col-xs-3 banner-body-left">
-    <div class="logo">
-        <h1><a href="<c:url value="/home"/>">Tree <span>Hole</span></a></h1>
-    </div>
+    <a href="<c:url value="/home"/>"><div class="logo"  style="background-image: url('/images/logo.jpg');background-size: contain">
+        <%--<h1><a href="<c:url value="/home"/>">Tree <span>Hole</span></a></h1>--%>
+    </div></a>
     <div class="top-nav">
         <nav class="navbar navbar-default">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,7 +37,15 @@
                 <nav class="stroke">
                     <ul class="nav navbar-nav">
                         <li id="treeholeBar"><a href="<c:url value="/home"/>" ><span class="glyphicon glyphicon-pencil">树洞</span></a></li>
-                        <li id="wishbottleBar"><a href="<c:url value="/wishbottle"/>"><span class="glyphicon glyphicon-heart">心愿瓶</span></a></li>
+                        <c:if test="${sessionScope.user==null}">
+                            <li id="wishbottleBar"><a href="javascript:alert('请先登录！')"><span class="glyphicon glyphicon-heart">心愿瓶</span></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.user!=null}">
+                            <li id="wishbottleBar"><a href="<c:url value="/wishbottle"/>"><span class="glyphicon glyphicon-heart">心愿瓶</span></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.user.username=='root'}">
+                            <li id="managebar"><a href="<c:url value="/admin/user/1"/>"><span class="glyphicon glyphicon-cog">后台管理</span></a></li>
+                        </c:if>
                     </ul>
                 </nav>
             </div>
@@ -61,13 +69,13 @@
         <!--log in state-->
         <div class="col-xs-8">
             <div class="row">
-                <a href=""><img src="<c:url value="/head/${sessionScope.user.userId}.jpg"/>" class="img-circle" alt="user image" width="100px"></a>
+                <a href="/user/${sessionScope.user.userId}/secret/1"><img src="<c:url value="/head/${sessionScope.user.userId}.jpg"/>" class="img-circle" alt="user image" width="100px"></a>
             </div>
             <div class="row">
-                <a href="" class="hvr-underline-from-left" style="color:#999"><span><c:out value="${sessionScope.user.nickname}"/></span></a></li>
+                <a href="/user/${sessionScope.user.userId}/secret/1" class="hvr-underline-from-left" style="color:dimgray;margin-left: 15px"><span><c:out value="${sessionScope.user.nickname}"/></span></a></li>
             </div>
             <div class="row">
-                <a href="<c:url value="/logout"/>" class="hvr-underline-from-left" style="color:#999"><span>退出</span></a></li>
+                <a href="<c:url value="/logout"/>" class="hvr-underline-from-left" style="color:dimgray;margin-left: 15px"><span>退出</span></a></li>
             </div>
         </div>
     </c:if>
@@ -90,7 +98,7 @@
                         </h4>
                     </div>
                     <div id="collapse${status.index}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading${status.index}">
-                        <div class="panel-body">
+                        <div class="panel-body" style="color: black">
                            <c:out value="${bulletin.content}"/>
                         </div>
                     </div>

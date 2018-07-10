@@ -9,24 +9,35 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import treehole.entity.Secret;
 import treehole.entity.User;
 import treehole.exception.DuplicateException;
 import treehole.exception.VerificationFailedException;
-import treehole.model.LoginBean;
-import treehole.model.RegisterBean;
+import treehole.model.*;
+import treehole.service.SecretService;
 import treehole.service.UserService;
+import treehole.service.WishService;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 /*@RestController*/
 public class UserController {
     private UserService userService;
+    private SecretService secretService;
+    private WishService wishService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService,
+                          SecretService secretService,
+                          WishService wishService) {
         this.userService=userService;
+        this.secretService=secretService;
+        this.wishService=wishService;
     }
 
 
@@ -42,11 +53,39 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
-    public String showUserProfile(@PathVariable("id") int userId,Model model) {
-        User user=userService.getProfile(userId);
-        model.addAttribute("userProfile",user);
-        return "profile";
+    @RequestMapping(value = "/user/{id}/secret/{page}",method = RequestMethod.GET)
+    public String showUserProfileWithSecret(@PathVariable("id") int userId,@PathVariable("page") int pageNum, Model model) {
+        UserProfile userProfile=userService.getProfile(userId);
+        PageBean<SecretInfo> secretPage=secretService.getPublicSecretPageByUserId(pageNum,HomeController.PAGE_SIZE,userId);
+        model.addAttribute("secretPage",secretPage);
+        model.addAttribute("profile",userProfile);
+        return "secretprofile";
+    }
+
+    @RequestMapping(value = "/user/{id}/wish/{page}",method = RequestMethod.GET)
+    public String showUserProfileWithWish(@PathVariable("id") int userId,@PathVariable("page") int pageNum, Model model) {
+        UserProfile userProfile=userService.getProfile(userId);
+        PageBean<WishInfo> wishPage=wishService.getPublicWishPageByUserId(pageNum,HomeController.PAGE_SIZE,userId);
+        model.addAttribute("wishPage",wishPage);
+        model.addAttribute("profile",userProfile);
+        return "wishprofile";
+    }
+    @RequestMapping(value = "/user/{id}/follow/{page}",method = RequestMethod.GET)
+    public String showUserProfileWithFollow(@PathVariable("id") int userId,@PathVariable("page") int pageNum, Model model) {
+        UserProfile userProfile=userService.getProfile(userId);
+        PageBean<FollowInfo> userPage=userService.getFollowPageByUserId(pageNum,HomeController.PAGE_SIZE,userId);
+        model.addAttribute("userPage",userPage);
+        model.addAttribute("profile",userProfile);
+        return "followprofile";
+    }
+
+    @RequestMapping(value = "/user/{id}/fan/{page}",method = RequestMethod.GET)
+    public String showUserProfileWithFan(@PathVariable("id") int userId,@PathVariable("page") int pageNum, Model model) {
+        UserProfile userProfile=userService.getProfile(userId);
+        PageBean<FollowInfo> userPage=userService.getFanPageByUserId(pageNum,HomeController.PAGE_SIZE,userId);
+        model.addAttribute("userPage",userPage);
+        model.addAttribute("profile",userProfile);
+        return "fanprofile";
     }
 
     @RequestMapping(value = "/user/update",method = RequestMethod.POST,produces = "application/json")
@@ -57,11 +96,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String register(RegisterBean registerBean, Errors errors) {
-        if (errors.hasErrors()){
-            System.out.println(errors);
-            return "register";
-        }
+    public String register(RegisterBean registerBean,HttpSession session) {
         User user=new User();
         user.setUsername(registerBean.getUsername());
         user.setPassword(registerBean.getPassword());
@@ -71,7 +106,19 @@ public class UserController {
         user.setBirthday(registerBean.getBirthday());
         user.setCreateDate(new Date());
         userService.register(user);
-        return "profile";
+        User newUser=userService.login(user.getUsername(),user.getPassword());
+        session.setAttribute("user",newUser);
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/checkUsername",method = RequestMethod.POST)
+    public @ResponseBody String checkUsername(@RequestParam("username") String username) {
+        return userService.checkUsername(username);
+    }
+
+    @RequestMapping(value = "/checkEmail",method = RequestMethod.POST)
+    public @ResponseBody String checkEmail(@RequestParam("email") String email){
+        return userService.checkEmail(email);
     }
 
     @RequestMapping(value = "/login",method=RequestMethod.POST)
@@ -84,7 +131,7 @@ public class UserController {
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute("user");
-        return "home";
+        return "redirect:/home";
     }
  /*   @RequestMapping(value = "/user/{id}",method = RequestMethod.GET,produces = "text/html;charset=utf-8")
     public @ResponseBody ResponseEntity<String> showUserProfile(@PathVariable int id,UriComponentsBuilder ucb) {

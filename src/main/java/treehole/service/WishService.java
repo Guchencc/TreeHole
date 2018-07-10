@@ -2,7 +2,11 @@ package treehole.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import treehole.entity.Secret;
 import treehole.entity.Wish;
+import treehole.model.PageBean;
+import treehole.model.SecretInfo;
+import treehole.model.WishInfo;
 import treehole.repository.WishRepository;
 
 import java.util.List;
@@ -41,5 +45,20 @@ public class WishService implements IWishService {
         Wish wish=wishRepository.findByWishId(wishId);
         wish.setThrown(true);
         wishRepository.update(wish);
+    }
+
+    @Override
+    public void updateWish(Wish wish) {
+        wishRepository.update(wish);
+    }
+
+    @Override
+    public PageBean<WishInfo> getPublicWishPageByUserId(int pageNum, int pageSize, int userId) {
+        List<Wish> wishes=wishRepository.findPublicByUserId(userId);
+        int totalRecord=wishes.size();
+        PageBean<WishInfo> pageBean=new PageBean<>(pageNum,pageSize,totalRecord);
+        int startIndex=pageBean.getStartIndex();
+        pageBean.setList(wishRepository.findPublicWishPageByUserId(startIndex,pageSize,userId));
+        return pageBean;
     }
 }

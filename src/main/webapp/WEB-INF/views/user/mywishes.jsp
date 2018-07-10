@@ -32,6 +32,7 @@
                 }
             })
     }
+
 </script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="col-xs-9 banner-body-right">
@@ -56,7 +57,7 @@
                         <div class="row">
                             <c:choose>
                                 <c:when test="${wish.hasPicture==true}">
-                                    <img src="<c:url value="/wish/image/${wish.wishId}.jpeg"/>" alt="wish_image"  height="150px" style="display: flex;margin: 0 auto"/>
+                                    <img src="<c:url value="/wish/image/${wish.wishId}.jpg"/>" alt="wish_image"  height="150px" style="display: flex;margin: 0 auto"/>
                                 </c:when>
                                 <c:when test="${wish.hasVoice==true}">
                                     <audio controls style="display: flex;margin: 0 auto">

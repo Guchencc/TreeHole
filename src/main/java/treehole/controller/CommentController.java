@@ -40,7 +40,8 @@ public class CommentController {
         newComment.setSecretId(secretId);
         newComment.setComment(comment);
         newComment.setAnonymous(anonymous);
-        newComment.setUserId(1);
+        User user=(User)session.getAttribute("user");
+        newComment.setUserId(user.getUserId());
         commentService.writeComment(newComment);
         return "success";
     }

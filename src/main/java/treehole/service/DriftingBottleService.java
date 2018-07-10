@@ -8,6 +8,7 @@ import treehole.repository.DriftingBottleRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class DriftingBottleService implements IDriftingBottleService {
@@ -42,6 +43,28 @@ public class DriftingBottleService implements IDriftingBottleService {
         bottle.setThrowDate(new Date());
         bottle.setUserId(userId);
         bottle.setAnonymous(isAnonymous);
+        bottle.setPickedUsers("");
         driftingBottleRepository.add(bottle);
+    }
+
+    @Override
+    public int getRandomBottle(int userId) {
+        List<DriftingBottle> bottles= driftingBottleRepository.findUnpickedBottles(userId);
+        System.out.println(bottles.size());
+        Random random=new Random();
+        int index=random.nextInt(bottles.size()*2+1);
+        if (index>=bottles.size()){
+            System.out.println("啥也没见到");
+            return -1;
+        }else{
+            DriftingBottle bottle=bottles.get(index);
+            int bottleId=bottle.getBottleId();
+            String pickedUsers=bottle.getPickedUsers();
+            bottle.setPickedUsers(pickedUsers+userId+",");
+            bottle.setPickCount(bottle.getPickCount()+1);
+            driftingBottleRepository.update(bottle);
+            System.out.println("捡到"+bottleId);
+            return bottleId;
+        }
     }
 }

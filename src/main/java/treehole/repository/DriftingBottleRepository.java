@@ -20,6 +20,9 @@ public interface DriftingBottleRepository {
     @Select("SELECT * FROM drifting_bottle WHERE userId=#{userId}")
     List<DriftingBottle> findAll(int userId);
 
+    @Select("SELECT * FROM drifting_bottle WHERE find_in_set(#{userId},pickedUsers)=0 AND userId !=#{userId}")
+    List<DriftingBottle> findUnpickedBottles(int userId);
+
     @Select("SELECT a.bottleId,a.wishId,a.throwDate,b.wish,b.hasPicture,b.hasVideo,b.hasVoice,a.isAnonymous FROM drifting_bottle a,wish b  WHERE a.userId=#{userId} AND a.wishId=b.wishId ORDER BY a.throwDate DESC")
     List<BottleInfo> findUserThrownBottle(int userId);
 

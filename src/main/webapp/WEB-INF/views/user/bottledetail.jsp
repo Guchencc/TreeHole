@@ -57,7 +57,7 @@
                     <div class="row">
                         <c:choose>
                             <c:when test="${bottle.bottleInfo.hasPicture==true}">
-                                <img src="<c:url value="/wish/image/${bottle.bottleInfo.wishId}.jpeg"/>" alt="wish_image"  height="150px" style="display: flex;margin: 0 auto"/>
+                                <img src="<c:url value="/wish/image/${bottle.bottleInfo.wishId}.jpg"/>" alt="wish_image"  height="150px" style="display: flex;margin: 0 auto"/>
                             </c:when>
                             <c:when test="${bottle.bottleInfo.hasVoice==true}">
                                 <audio controls style="display: flex;margin: 0 auto">

@@ -24,8 +24,6 @@ public class TestUserService {
         SqlSessionFactory sqlSessionFactory=(SqlSessionFactory)context.getBean("sqlSessionFactory");
         SqlSession sqlSession=sqlSessionFactory.openSession();
         UserRepository repository=sqlSession.getMapper(UserRepository.class);
-        UserService userService=new UserService(repository);
-        testGetProfile(userService);
     }
 
     static void testRegister(UserService userService){
@@ -41,11 +39,6 @@ public class TestUserService {
     }
 
     static void testUpdate(UserService userService){
-        User user=userService.getProfile(41);
-        user.setGender(0);
-        user.setEmail("888@qq.com");
-        user.setBirthday(new Date());
-        userService.updateProfile(user);
     }
 
     static void testGetProfile(UserService userService){

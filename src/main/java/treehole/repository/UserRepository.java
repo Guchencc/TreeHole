@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import treehole.entity.User;
+import treehole.model.UserProfile;
 
 import java.util.List;
 

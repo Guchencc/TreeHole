@@ -11,4 +11,5 @@ public interface IDriftingBottleService {
     BottleInfo getBottleInfo(int bottleId);
     int getBottleFromWish(int wishId);
     void throwBottleIntoWishSea(int wishId,int userId,boolean isAnonymous);
+    int getRandomBottle(int userId);
 }

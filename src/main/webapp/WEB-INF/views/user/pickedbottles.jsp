@@ -29,7 +29,7 @@
                 </button>
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group" style="margin-left: 300px">
-                        <button type="button" class="btn btn-default" onclick="window.location.href='<c:url value="/pickedbottles" />'">捞到的瓶子</button>
+                        <button type="button" class="btn btn-default" style="background-color: lightgray" onclick="window.location.href='<c:url value="/pickedbottles" />'">捞到的瓶子</button>
                         <button type="button" class="btn btn-default" onclick="window.location.href='<c:url value="/thrownbottles" />'">扔出的瓶子</button>
                     </div>
                 </div>

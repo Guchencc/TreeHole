@@ -1,6 +1,8 @@
 package treehole.service;
 
 import treehole.entity.Wish;
+import treehole.model.PageBean;
+import treehole.model.WishInfo;
 
 import java.util.List;
 
@@ -10,4 +12,7 @@ public interface IWishService {
     Wish getWish(int wishId);
     void deleteWish(int wishId);
     void setThrown(int wishId);
+    void updateWish(Wish wish);
+
+    PageBean<WishInfo> getPublicWishPageByUserId(int pageNum, int pageSize, int userId);
 }

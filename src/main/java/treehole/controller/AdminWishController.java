@@ -16,7 +16,6 @@ import treehole.entity.Wish;
 import treehole.repository.SecretRepository;
 import treehole.repository.WishRepository;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +46,7 @@ public class AdminWishController {
 
 
     @RequestMapping(value = "/wish/add",method = RequestMethod.POST)
-    public String addWish(@Valid Wish wish, Errors errors){
+    public String addWish(Wish wish, Errors errors){
         if(errors.hasErrors()){
             return "redirect:/admin/wish/1";
         }

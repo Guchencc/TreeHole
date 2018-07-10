@@ -1,28 +1,13 @@
 package treehole.model;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class RegisterBean {
-    @NotNull
-    @Size(min=8,max=16,message = "账户名必须介于8-16！")
     private String username;
-    @NotNull
-    @Size(min=8,max=16)
     private String password;
-    @NotNull
-    @Size(min=8,max=16)
     private String repeatPwd;
-    @NotNull
-    @Size(min=4,max=10)
     private String nickname;
-    @NotNull
     private int gender;
-    @Past
     private Date birthday;
-    @NotNull
     private String email;
 
     public String getUsername() {

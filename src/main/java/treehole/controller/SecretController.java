@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import treehole.entity.Secret;
+import treehole.entity.User;
 import treehole.service.SecretService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,13 +26,15 @@ public class SecretController {
 
     @RequestMapping(value = "/secret/add",method = RequestMethod.POST)
     public @ResponseBody String addSecret(@RequestParam("content") String content,
-                            @RequestParam("tags") String tags,
-                            @RequestParam("anonymous")boolean anonymous){
+                                          @RequestParam("tags") String tags,
+                                          @RequestParam("anonymous")boolean anonymous,
+                                          HttpSession session){
         Secret secret=new Secret();
         secret.setContent(content);
         secret.setTags(tags);
         secret.setAnonymous(anonymous);
-        secret.setUserId(1);
+        User user=(User)session.getAttribute("user");
+        secret.setUserId(user.getUserId());
         secretService.writeSecret(secret);
         return "success";
     }

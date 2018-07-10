@@ -18,7 +18,7 @@ public interface WishRepository {
     @Select("SELECT * FROM wish WHERE wishId=#{wishId}")
     Wish findByWishId(int wishId);
 
-    @Select("SELECT * FROM wish WHERE userId=#{userId}")
+    @Select("SELECT * FROM wish WHERE userId=#{userId} ORDER BY createDate DESC")
     List<Wish> findByUserId(int userId);
 
     @Delete("DELETE FROM wish WHERE wishId=#{wishId}")
@@ -33,5 +33,9 @@ public interface WishRepository {
     @Select("SELECT * FROM wish LIMIT #{0},#{1}")
     List<Wish> findPage(int startRow, int pageSize);
 
+    @Select("SELECT * FROM wish WHERE userId=#{userId} AND isPrivacy=false")
+    List<Wish> findPublicByUserId(int userId);
 
+    @Select("SELECT * FROM wish WHERE userId=#{2} AND isPrivacy=false ORDER BY createDate DESC LIMIT #{0},#{1}" )
+    List<WishInfo> findPublicWishPageByUserId(int startIndex, int pageSize, int userId);
 }

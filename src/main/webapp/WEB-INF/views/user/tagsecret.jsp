@@ -165,6 +165,16 @@
         window.location="/treehole/${tag}/"+goto_page;
     }
 
+    function searchSecret() {
+        var content=$("#searchContent").val();
+        if(content==null || content==""){
+            window.location="/home";
+        }else{
+            window.location="/treehole/search/"+content+"/1";
+        }
+    }
+
+
 </script>
 <!--右上-->
 <div class="col-xs-9 banner-body-right">
@@ -215,8 +225,34 @@
         <!--添加秘密-->
 
         <hr/>
-        <!--搜索栏-->
-        <div class="row" id="searchSecret"><span class="glyphicon glyphicon-search" style="margin: 0 10px"></span><input type="text"/><button class="btn btn-default btn-sm" style="margin: 0 10px">搜索</button></div>
+        <!--操作栏-->
+        <div class="row">
+            <!--排序-->
+            <div class="pull-left" style="margin-left: 15px">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">最新
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#">获赞数</a>
+                        </li>
+                        <li>
+                            <a href="#">获踩数</a>
+                        </li>
+                        <li>
+                            <a href="#">评论量</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--搜索-->
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-search" style="margin: 0 10px"></span>
+                <input id="searchContent" type="text"/><button class="btn btn-default btn-sm" style="margin: 0 10px" onclick="searchSecret()">搜索</button>
+            </div>
+        </div>
+
         <hr/>
 
         <!--搜索结果-->

@@ -17,4 +17,16 @@ public interface ISecretService {
     void upVote(int secretId);
     void downVote(int secretId);
     PageBean<SecretInfo> getSecretPageByTag(int startRow,int pageSize,String tag);
+
+    PageBean<SecretInfo> getSecretPageBySearch(int pageNum, int pageSize, String content);
+
+    PageBean<SecretInfo> getSecretPageByUserId(int pageNum, int pageSize, int userId);
+
+    PageBean<SecretInfo> getPublicSecretPageByUserId(int pageNum, int pageSize, int userId);
+
+    PageBean<SecretInfo> getSecretsInPageSortByComment(int pageNum, int pageSize);
+
+    PageBean<SecretInfo> getSecretsInPageSortByUpvote(int pageNum, int pageSize);
+
+    PageBean<SecretInfo> getSecretsInPageSortByDownvote(int pageNum, int pageSize);
 }

@@ -18,7 +18,6 @@ import treehole.repository.UserRepository;
 import treehole.repository.WishRepository;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +76,7 @@ public class AdminUserController {
 
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST)
-    public String addUser(@Valid User user, Errors errors){
+    public String addUser( User user, Errors errors){
         if(errors.hasErrors()){
             return "redirect:/admin/user/1";
         }

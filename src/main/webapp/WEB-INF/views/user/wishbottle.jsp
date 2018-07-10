@@ -12,6 +12,18 @@
             $("#wishbottleBar").addClass("active").siblings().find("a").addClass("hvr-underline-from-left");
         }
     )
+
+    function pickBottle() {
+        var url="/bottle/pick";
+        $.get(url,function (data) {
+            if(data!="failed"){
+                alert("捡到一个心愿瓶!");
+                window.location.href="/bottle/"+data;
+            }else{
+                alert("什么也没有捡到！");
+            }
+        })
+    }
 </script>
 <div class="col-xs-9 banner-body-right">
     <div class="row" style="position:relative">
@@ -23,14 +35,14 @@
             <button type="button" onclick="window.location.href='<c:url value="/writewish" />'"  class="btn btn-default btn-lg" style="font-size:13px;width:70px;height:70px;background: rgba(255, 255, 255, 0.7);position:absolute;left:100px;top:330px">
                 <img src="<c:url value="/images/write.jpg"/>" alt="write" class="img-responsive"/>写心愿
             </button>
-            <button type="button" onclick="window.location.href='<c:url value="/salvagebottle" />'" class="btn btn-default btn-lg" style="font-size:13px;width:70px;height:70px;background: rgba(255, 255, 255, 0.7);position:absolute;left:300px;top:330px">
-                <img src="" alt="catch" class="img-responsive"/>捞瓶子
+            <button type="button" onclick="pickBottle()" class="btn btn-default btn-lg" style="font-size:13px;width:70px;height:70px;background: rgba(255, 255, 255, 0.7);position:absolute;left:300px;top:330px">
+                <img src="<c:url value="/images/pick.png"/>" alt="catch" class="img-responsive"/>捞瓶子
             </button>
             <button type="button" onclick="window.location.href='<c:url value="/pickedbottles" />'" class="btn btn-default btn-lg" style="font-size:13px;width:70px;height:70px;background: rgba(255, 255, 255, 0.7);position:absolute;left:500px;top:330px">
-                <img src="" alt="myBottle" class="img-responsive"/>我的瓶子
+                <img src="<c:url value="/images/bottles.png"/>" alt="myBottle" class="img-responsive"/>我的瓶子
             </button>
             <button type="button" onclick="window.location.href='<c:url value="/mywishes" />'" class="btn btn-default btn-lg" style="font-size:13px;width:70px;height:70px;background: rgba(255, 255, 255, 0.7);position:absolute;left:700px;top:330px">
-                <img src="" alt="myWish" class="img-responsive"/>我的心愿
+                <img src="<c:url value="/images/wish.jpg"/>" alt="myWish" class="img-responsive"/>我的心愿
             </button>
         </div>
     </div>
